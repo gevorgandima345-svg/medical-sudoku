@@ -2,23 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta property="vk:app_id" content="54584944">
-    <meta property="og:title" content="Медицинское судоку | Профилактика выгорания">
-    <meta property="og:description" content="Судоку для медсестёр, фельдшеров и всех заботящихся о себе. Отдохни мозгом!">
-    <meta property="og:image" content="https://your-site.com/preview.png">
-    <title>Судоку — Профилактика выгорания | Молодёжный совет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Медицинское судоку — профилактика выгорания</title>
     <style>
         * {
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
-
         body {
-            background-image: url('ФОНСИС.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: #1a3a2a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,63 +18,43 @@
             font-family: 'Segoe UI', 'Courier New', monospace;
             margin: 0;
             padding: 20px;
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
         }
-
         .game-container {
-            background: rgba(10, 25, 20, 0.5);
+            background: rgba(10, 25, 20, 0.8);
             backdrop-filter: blur(3px);
             border-radius: 48px;
             padding: 20px;
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
             max-width: 650px;
             width: 100%;
-            max-height: 100vh;
-            overflow-y: auto;
-            box-sizing: border-box;
         }
-
         .sudoku-header {
             text-align: center;
             margin-bottom: 15px;
         }
-
         .sudoku-header h1 {
             margin: 0;
             font-size: 1.6rem;
             color: #f5c542;
             text-shadow: 0 2px 5px #1a3a2a;
-            letter-spacing: 2px;
         }
-
         .sudoku-header p {
             margin: 5px 0 0;
             color: #c7e9d0;
             font-size: 0.85rem;
         }
-
-        .canvas-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-        }
-
         canvas {
             display: block;
+            margin: 0 auto;
             border-radius: 16px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
             cursor: pointer;
-            background: rgba(255, 245, 230, 0.85);
+            background: #fff5e6;
             width: 100%;
             height: auto;
             max-width: 540px;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 1;
         }
-
         .info-panel {
             display: flex;
             justify-content: space-between;
@@ -91,7 +63,6 @@
             margin: 15px 10px 0;
             flex-wrap: wrap;
         }
-
         .status-box {
             background: #0f2a1ccc;
             padding: 6px 16px;
@@ -99,10 +70,7 @@
             color: #ffdd99;
             font-weight: bold;
             font-size: 14px;
-            flex: 1;
-            text-align: center;
         }
-
         button {
             background: #4a9b7e;
             border: none;
@@ -115,12 +83,10 @@
             font-family: monospace;
             transition: 0.2s;
         }
-
         button:hover {
             background: #2ecc71;
             transform: scale(1.02);
         }
-
         .difficulty-panel {
             display: flex;
             justify-content: center;
@@ -128,7 +94,6 @@
             margin-bottom: 12px;
             flex-wrap: wrap;
         }
-
         .difficulty-btn {
             background: #2a4a3e;
             padding: 6px 18px;
@@ -136,21 +101,13 @@
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
             color: #ddddbb;
         }
-
         .difficulty-btn.active {
             background: #f5c542;
             color: #1a3a2a;
             box-shadow: 0 0 8px #f5c542;
         }
-
-        .difficulty-btn:hover {
-            background: #f5c542;
-            color: #1a3a2a;
-        }
-
         .number-panel {
             display: flex;
             justify-content: center;
@@ -158,7 +115,6 @@
             margin-top: 15px;
             flex-wrap: wrap;
         }
-
         .num-btn {
             background: #1a3a2e;
             color: #f5e6b0;
@@ -174,40 +130,22 @@
             box-shadow: 0 3px 0 #0a1a10;
             transition: 0.05s linear;
         }
-
         .num-btn:active {
             transform: translateY(2px);
             box-shadow: none;
         }
-
         .eraser {
             background: #6b3e2c;
         }
-
         .footer-note {
             text-align: center;
             font-size: 11px;
             color: #bbddbbcc;
             margin-top: 12px;
         }
-
         @media (max-width: 520px) {
-            .num-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-            .sudoku-header h1 {
-                font-size: 1.2rem;
-            }
-            .difficulty-btn {
-                padding: 4px 12px;
-                font-size: 12px;
-            }
-            .info-panel button {
-                padding: 6px 12px;
-                font-size: 14px;
-            }
+            .num-btn { width: 40px; height: 40px; font-size: 20px; }
+            .sudoku-header h1 { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -217,192 +155,35 @@
         <h1>🩺 СУДОКУ | ПРОФИЛАКТИКА ВЫГОРАНИЯ 🧠</h1>
         <p>медсёстры, минута спокойствия</p>
     </div>
-
     <div class="difficulty-panel">
         <div class="difficulty-btn" data-diff="easy">🌿 ЛЁГКИЙ</div>
         <div class="difficulty-btn active" data-diff="medium">🌟 СРЕДНИЙ</div>
         <div class="difficulty-btn" data-diff="hard">🔥 СЛОЖНЫЙ</div>
     </div>
-
-    <div class="canvas-wrapper">
-        <canvas id="sudokuCanvas" width="540" height="540"></canvas>
-    </div>
-
+    <canvas id="sudokuCanvas" width="540" height="540"></canvas>
     <div class="info-panel">
         <div class="status-box" id="gameStatus">🧘‍♀️ Игра активна</div>
         <button id="newGameBtn">🌟 НОВАЯ ИГРА</button>
         <button id="checkBtn">🔍 ПРОВЕРКА</button>
     </div>
-
     <div class="number-panel" id="numberPanel"></div>
-    <div class="footer-note">
-        📌 выбери клетку → цифра | ластик ⌫
-    </div>
+    <div class="footer-note">📌 выбери клетку → цифра | ластик ⌫</div>
 </div>
 
-<script src="https://vk.com/js/api/openapi.js?169"></script>
-<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 <script>
-    (function() {
-        // ========== VK BRIDGE ИНИЦИАЛИЗАЦИЯ ==========
-        let vkBridge = null;
-        let vkUserId = null;
-        
-        async function initVK() {
-            try {
-                vkBridge = window.vkBridge || window.VKBridge;
-                if (!vkBridge) {
-                    console.warn('VK Bridge не загружен, работаем без интеграции');
-                    return;
-                }
-                
-                // Получаем параметры запуска
-                const launchParams = await vkBridge.send('VKWebAppGetLaunchParams');
-                console.log('VK Launch Params:', launchParams);
-                
-                if (launchParams.vk_user_id) {
-                    vkUserId = launchParams.vk_user_id;
-                    localStorage.setItem('vk_user_id', vkUserId);
-                }
-                
-                // Адаптация языка
-                if (launchParams.vk_language && launchParams.vk_language !== 'ru') {
-                    document.querySelector('.sudoku-header p').innerText = 'medical staff, a minute of peace';
-                }
-                
-                // Инициализируем приложение
-                await vkBridge.send('VKWebAppInit');
-                console.log('VK Bridge инициализирован');
-                
-                // Загружаем сохранённый прогресс из VK Storage
-                await loadProgressFromVK();
-            } catch (error) {
-                console.error('Ошибка VK Bridge:', error);
-                // Fallback: загружаем из localStorage
-                loadProgressFromLocal();
-            }
-        }
-        
-        // Сохранение прогресса в VK Storage
-        async function saveProgressToVK() {
-            const gameState = {
-                board: board,
-                currentDifficulty: currentDifficulty,
-                timestamp: Date.now()
-            };
-            
-            try {
-                if (vkBridge) {
-                    await vkBridge.send('VKWebAppStorageSet', {
-                        key: 'sudoku_save',
-                        value: JSON.stringify(gameState)
-                    });
-                    console.log('Прогресс сохранён в VK Storage');
-                } else {
-                    localStorage.setItem('sudoku_local_save', JSON.stringify(gameState));
-                }
-            } catch (error) {
-                console.error('Ошибка сохранения:', error);
-                localStorage.setItem('sudoku_local_save', JSON.stringify(gameState));
-            }
-        }
-        
-        // Загрузка прогресса из VK Storage
-        async function loadProgressFromVK() {
-            try {
-                if (!vkBridge) return;
-                const response = await vkBridge.send('VKWebAppStorageGet', {
-                    keys: ['sudoku_save']
-                });
-                if (response.keys && response.keys[0] && response.keys[0].value) {
-                    const saved = JSON.parse(response.keys[0].value);
-                    if (saved && saved.board) {
-                        loadBoardFromSave(saved);
-                        statusDiv.innerHTML = "📀 Прогресс восстановлен из облака";
-                        return true;
-                    }
-                }
-            } catch (error) {
-                console.error('Ошибка загрузки из VK:', error);
-            }
-            return loadProgressFromLocal();
-        }
-        
-        function loadProgressFromLocal() {
-            const local = localStorage.getItem('sudoku_local_save');
-            if (local) {
-                try {
-                    const saved = JSON.parse(local);
-                    if (saved && saved.board) {
-                        loadBoardFromSave(saved);
-                        statusDiv.innerHTML = "💾 Прогресс восстановлен локально";
-                        return true;
-                    }
-                } catch(e) {}
-            }
-            return false;
-        }
-        
-        function loadBoardFromSave(saved) {
-            if (saved.currentDifficulty) {
-                currentDifficulty = saved.currentDifficulty;
-                // Обновляем активную кнопку сложности
-                document.querySelectorAll('.difficulty-btn').forEach(btn => {
-                    if (btn.getAttribute('data-diff') === currentDifficulty) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-            }
-            // Загружаем доску из сохранения
-            for(let i = 0; i < 9; i++) {
-                for(let j = 0; j < 9; j++) {
-                    if (saved.board[i] && saved.board[i][j] !== undefined) {
-                        board[i][j] = saved.board[i][j];
-                    }
-                }
-            }
-            // Пересчитываем fixedMask на основе текущей сложности
-            const startBoard = boards[currentDifficulty];
-            for(let i = 0; i < 9; i++) {
-                for(let j = 0; j < 9; j++) {
-                    fixedMask[i][j] = (startBoard && startBoard[i][j] !== 0);
-                }
-            }
-            render();
-        }
-        
-        // Функция "Поделиться" при победе
-        async function shareVictory() {
-            if (!vkBridge) return;
-            try {
-                await vkBridge.send('VKWebAppShare', {
-                    link: window.location.href,
-                    link: window.location.href
-                });
-                statusDiv.innerHTML = "📤 Спасибо, что делитесь спокойствием!";
-            } catch (error) {
-                console.log('Поделиться не удалось');
-            }
-        }
-        
-        // ========== ОСНОВНАЯ ЛОГИКА ИГРЫ ==========
+    (function(){
         const canvas = document.getElementById('sudokuCanvas');
         const ctx = canvas.getContext('2d');
         const statusDiv = document.getElementById('gameStatus');
-        
         const size = 540;
         const cellSize = size / 9;
-        
+
         let board = Array(9).fill().map(() => Array(9).fill(0));
         let solution = Array(9).fill().map(() => Array(9).fill(0));
         let fixedMask = Array(9).fill().map(() => Array(9).fill(false));
-        
         let selectedRow = -1, selectedCol = -1;
         let currentDifficulty = 'medium';
-        
-        // Игровые доски
+
         const boards = {
             easy: [
                 [5,3,4,6,7,8,9,1,2],
@@ -438,7 +219,7 @@
                 [0,0,0,0,8,0,0,0,0]
             ]
         };
-        
+
         const solutions = {
             easy: [
                 [5,3,4,6,7,8,9,1,2],
@@ -474,45 +255,24 @@
                 [9,7,1,4,6,5,3,8,2]
             ]
         };
-        
+
         function loadDifficulty(level) {
             currentDifficulty = level;
-            const startBoard = boards[level];
-            const solBoard = solutions[level];
-            
             for(let i=0;i<9;i++){
                 for(let j=0;j<9;j++){
-                    board[i][j] = startBoard[i][j];
-                    solution[i][j] = solBoard[i][j];
-                    fixedMask[i][j] = (startBoard[i][j] !== 0);
+                    board[i][j] = boards[level][i][j];
+                    solution[i][j] = solutions[level][i][j];
+                    fixedMask[i][j] = (boards[level][i][j] !== 0);
                 }
             }
             selectedRow = -1;
             selectedCol = -1;
             render();
-            saveProgressToVK();
         }
-        
-        function initGame() {
-            loadDifficulty(currentDifficulty);
-            statusDiv.innerHTML = "🧘‍♀️ Игра активна";
-            render();
-        }
-        
-        function checkVictory() {
-            for(let i=0;i<9;i++){
-                for(let j=0;j<9;j++){
-                    if(board[i][j] !== solution[i][j]) return false;
-                }
-            }
-            statusDiv.innerHTML = "🎉 ПОБЕДА! Отдых — лучшее лекарство 🎉";
-            shareVictory();
-            return true;
-        }
-        
+
         function hasConflicts() {
             let conflict = Array(9).fill().map(()=>Array(9).fill(false));
-            // Проверка по строкам
+            // строки
             for(let i=0;i<9;i++){
                 let rowVals = {};
                 for(let j=0;j<9;j++){
@@ -523,7 +283,7 @@
                     }
                 }
             }
-            // По столбцам
+            // столбцы
             for(let j=0;j<9;j++){
                 let colVals = {};
                 for(let i=0;i<9;i++){
@@ -534,14 +294,14 @@
                     }
                 }
             }
-            // По квадратам
+            // квадраты
             for(let box=0;box<9;box++){
                 let boxVals = {};
                 let startRow = Math.floor(box/3)*3;
                 let startCol = (box%3)*3;
                 for(let dr=0;dr<3;dr++){
                     for(let dc=0;dc<3;dc++){
-                        let r = startRow+dr, c=startCol+dc;
+                        let r = startRow+dr, c = startCol+dc;
                         let val = board[r][c];
                         if(val !==0 && !fixedMask[r][c]){
                             if(boxVals[val]) conflict[r][c]=true;
@@ -552,52 +312,23 @@
             }
             return conflict;
         }
-        
-        function drawOverlay() {
-            ctx.clearRect(0, 0, size, size);
+
+        function render() {
+            ctx.clearRect(0,0,size,size);
+            // фон
+            ctx.fillStyle = '#fff5e6';
+            ctx.fillRect(0,0,size,size);
+            // сетка
             ctx.save();
-            ctx.globalAlpha = 0.12;
-            ctx.font = '44px "Segoe UI", "Apple Color Emoji"';
-            ctx.fillStyle = '#ffffff';
-            ctx.fillText("👩‍⚕️", 18, 65);
-            ctx.fillText("🩺", 470, 80);
-            ctx.fillText("💊", 35, 500);
-            ctx.fillText("❤️", 475, 495);
-            ctx.fillText("🕊️", 255, 525);
-            ctx.font = '38px emoji';
-            ctx.fillText("❤️", 130, 290);
-            ctx.fillText("🧘", 400, 270);
-            ctx.font = '32px emoji';
-            ctx.fillText("🩺", 380, 450);
-            ctx.fillText("👩‍⚕️", 70, 400);
-            
-            ctx.font = 'bold 24px "Segoe UI", "Arial"';
-            ctx.fillStyle = '#ffffff';
-            ctx.globalAlpha = 0.3;
-            ctx.textAlign = 'center';
-            ctx.fillText("МОЛОДЕЖНЫЙ", size/2, size/2 - 15);
-            ctx.font = 'bold 26px "Segoe UI", "Arial"';
-            ctx.fillText("СОВЕТ", size/2, size/2 + 22);
-            ctx.font = '18px emoji';
-            ctx.fillText("⭐", size/2 - 30, size/2 + 5);
-            ctx.fillText("⭐", size/2 + 30, size/2 + 5);
-            
-            ctx.textAlign = 'left';
-            ctx.globalAlpha = 1.0;
-            ctx.restore();
-        }
-        
-        function drawGrid() {
-            ctx.save();
-            ctx.shadowBlur = 0;
             ctx.lineWidth = 1.3;
             ctx.strokeStyle = '#be8f6e';
             for(let i=0;i<=9;i++){
-                ctx.beginPath();
                 let pos = i*cellSize;
+                ctx.beginPath();
                 ctx.moveTo(pos,0);
                 ctx.lineTo(pos,size);
                 ctx.stroke();
+                ctx.beginPath();
                 ctx.moveTo(0,pos);
                 ctx.lineTo(size,pos);
                 ctx.stroke();
@@ -615,12 +346,12 @@
                 ctx.lineTo(size,pos);
                 ctx.stroke();
             }
-            
+            // выделение
             if(selectedRow !== -1 && selectedCol !== -1){
                 ctx.fillStyle = '#e5d5baaa';
                 ctx.fillRect(selectedCol*cellSize, selectedRow*cellSize, cellSize, cellSize);
             }
-            
+            // цифры
             const conflictMask = hasConflicts();
             for(let i=0;i<9;i++){
                 for(let j=0;j<9;j++){
@@ -633,27 +364,16 @@
                         ctx.textBaseline = 'middle';
                         let x = j*cellSize + cellSize/2;
                         let y = i*cellSize + cellSize/2;
-                        if(isFixed){
-                            ctx.fillStyle = '#2c5a3a';
-                            ctx.fillText(val, x, y);
-                        } else if(isError){
-                            ctx.fillStyle = '#d64531';
-                            ctx.fillText(val, x, y);
-                        } else {
-                            ctx.fillStyle = '#3a6b4b';
-                            ctx.fillText(val, x, y);
-                        }
+                        if(isFixed) ctx.fillStyle = '#2c5a3a';
+                        else if(isError) ctx.fillStyle = '#d64531';
+                        else ctx.fillStyle = '#3a6b4b';
+                        ctx.fillText(val, x, y);
                     }
                 }
             }
             ctx.restore();
         }
-        
-        function render() {
-            drawOverlay();
-            drawGrid();
-        }
-        
+
         function setValue(number) {
             if(selectedRow === -1 || selectedCol === -1) {
                 statusDiv.innerHTML = "⚠️ Сначала выбери клетку";
@@ -671,10 +391,19 @@
             }
             render();
             checkVictory();
-            saveProgressToVK();
             statusDiv.innerHTML = "✅ Клетка обновлена. Спокойствие.";
         }
-        
+
+        function checkVictory() {
+            for(let i=0;i<9;i++){
+                for(let j=0;j<9;j++){
+                    if(board[i][j] !== solution[i][j]) return false;
+                }
+            }
+            statusDiv.innerHTML = "🎉 ПОБЕДА! Отдых — лучшее лекарство 🎉";
+            return true;
+        }
+
         function checkBoardWithMessage() {
             let mistakes = 0;
             for(let i=0;i<9;i++){
@@ -684,40 +413,35 @@
             }
             let isFull = true;
             for(let i=0;i<9;i++) for(let j=0;j<9;j++) if(board[i][j]===0) isFull=false;
-            
             if(mistakes === 0 && isFull){
                 statusDiv.innerHTML = "🎉 Абсолютная победа! Вы справились с выгоранием! 🎉";
-                shareVictory();
             } else {
                 statusDiv.innerHTML = `🔍 Несовпадений: ${mistakes}. Дышите глубже, всё получится.`;
             }
             render();
         }
-        
+
         function newGame() {
             loadDifficulty(currentDifficulty);
             statusDiv.innerHTML = "🌟 Новая игра. Забота о себе в приоритете 🌟";
         }
-        
+
         function changeDifficulty(level) {
             currentDifficulty = level;
             loadDifficulty(level);
             statusDiv.innerHTML = `✨ Уровень ${level === 'easy' ? 'ЛЁГКИЙ' : (level === 'medium' ? 'СРЕДНИЙ' : 'СЛОЖНЫЙ')} ✨`;
             document.querySelectorAll('.difficulty-btn').forEach(btn => {
-                if(btn.getAttribute('data-diff') === level) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                if(btn.getAttribute('data-diff') === level) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
         }
-        
+
         function handleCanvasClick(e) {
             const rect = canvas.getBoundingClientRect();
             const scaleX = canvas.width / rect.width;
             const scaleY = canvas.height / rect.height;
             let clientX, clientY;
-            if (e.touches) {
+            if(e.touches) {
                 clientX = e.touches[0].clientX;
                 clientY = e.touches[0].clientY;
                 e.preventDefault();
@@ -736,7 +460,7 @@
                 statusDiv.innerHTML = `📌 Клетка (${row+1},${col+1}) | введи цифру`;
             }
         }
-        
+
         function buildNumberPanel() {
             const panel = document.getElementById('numberPanel');
             panel.innerHTML = '';
@@ -758,40 +482,17 @@
             });
             panel.appendChild(eraseBtn);
         }
-        
-        function bindDifficultyButtons() {
-            document.querySelectorAll('.difficulty-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const level = btn.getAttribute('data-diff');
-                    changeDifficulty(level);
-                });
-            });
-        }
-        
-        // Поддержка касаний для мобильных
+
         canvas.addEventListener('click', handleCanvasClick);
         canvas.addEventListener('touchstart', handleCanvasClick);
-        document.getElementById('newGameBtn').addEventListener('click', () => newGame());
-        document.getElementById('checkBtn').addEventListener('click', () => checkBoardWithMessage());
-        
+        document.getElementById('newGameBtn').addEventListener('click', newGame);
+        document.getElementById('checkBtn').addEventListener('click', checkBoardWithMessage);
+        document.querySelectorAll('.difficulty-btn').forEach(btn => {
+            btn.addEventListener('click', () => changeDifficulty(btn.getAttribute('data-diff')));
+        });
+
         buildNumberPanel();
-        bindDifficultyButtons();
-        
-        // Запускаем игру и VK Bridge
-        initVK().then(() => {
-            // Если не загрузился сохранённый прогресс, начинаем новую игру
-            const hasLoaded = localStorage.getItem('sudoku_local_save') || 
-                             (vkBridge && true); // Проверка упрощённая
-            if (!localStorage.getItem('sudoku_local_save') && !sessionStorage.getItem('game_initialized')) {
-                initGame();
-                sessionStorage.setItem('game_initialized', 'true');
-            }
-        });
-        
-        // Сохраняем прогресс при закрытии/уходе со страницы
-        window.addEventListener('beforeunload', () => {
-            saveProgressToVK();
-        });
+        loadDifficulty('medium');
     })();
 </script>
 </body>
